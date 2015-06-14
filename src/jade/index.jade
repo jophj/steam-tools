@@ -14,7 +14,7 @@ html(ng-app="reddit-steam-tools")
       md-toolbar.md-whiteframe-z2
         div.md-toolbar-tools
           div.title
-            span Reddit Steam Tools (Alpha as fuark)
+            span Reddit Steam Tools (PoC)
     
     div(role="main", layout="row")
       md-content.container(layout="row" layout-align="center start", layout-padding)
@@ -23,6 +23,9 @@ html(ng-app="reddit-steam-tools")
             md-input-container
               label Search
               input(ng-model="searchString")
+
+          div(ng-if="isLoading")
+            p.md-display-1(style="text-align: center;") Loading. Wait for it...
 
           div(layout="row")
             div(flex="50")
@@ -38,6 +41,9 @@ html(ng-app="reddit-steam-tools")
                 md-list-item(ng-repeat="app in choosenApps track by $index", ng-click="removeApp($index)")
                   p {{app.name}}
                   md-button.md-fab.md-mini -
+
+          div
+            md-button.md-raised.md-primary(style="width: 100%") Generate
 
             
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js')

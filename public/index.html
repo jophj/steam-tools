@@ -13,7 +13,7 @@
     <div layout="column">
       <md-toolbar class="md-whiteframe-z2">
         <div class="md-toolbar-tools">
-          <div class="title"><span>Reddit Steam Tools (Alpha as fuark)</span></div>
+          <div class="title"><span>Reddit Steam Tools (PoC)</span></div>
         </div>
       </md-toolbar>
     </div>
@@ -26,6 +26,9 @@
               <input ng-model="searchString">
             </md-input-container>
           </form>
+          <div ng-if="isLoading">
+            <p style="text-align: center;" class="md-display-1">Loading. Wait for it...</p>
+          </div>
           <div layout="row">
             <div flex="50">
               <md-list>
@@ -45,6 +48,9 @@
                 </md-list-item>
               </md-list>
             </div>
+          </div>
+          <div>
+            <md-button style="width: 100%" class="md-raised md-primary">Generate</md-button>
           </div>
         </div>
       </md-content>

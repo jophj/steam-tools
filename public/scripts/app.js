@@ -5,7 +5,7 @@
 	/* global angular */
 	var app = angular.module('reddit-steam-tools', ['ngMaterial']);
 
-	app.factory('SteamAppProvider',[function () {
+	app.factory('SteamAppProvider',['$http', function ($http) {
 			
 		var HOST = 'localhost:3666';
 		var iSteamAppsApi = '/ISteamApps/GetAppList/v2/';
@@ -97,6 +97,15 @@
 			},
 			isLoading: function () {
 				return appDB == null;
+			},
+
+			getAppInfo: function(appId, callback){
+				$http.get('http://' + HOST + '/info/' + appId).then(
+					function(resp){
+						callback(resp.data);
+					}
+				);
+				return null;
 			}
 		};
 	}]);
@@ -104,13 +113,20 @@
 	app.controller('appCtrl',[
 		'$scope', 'SteamAppProvider',
 		function($scope, SteamAppProvider){
-			SteamAppProvider.initDB();
+			SteamAppProvider.initDB(function(){
+				$scope.isLoading = false;
+			});
 
+			$scope.isLoading = true;
 			$scope.choosenApps = [];
 
 			$scope.addApp = function(index){
-				$scope.choosenApps.push($scope.apps[index]);
+				var app = $scope.apps[index];
+				$scope.choosenApps.push(app);
 				$scope.apps.splice(index, 1);
+				SteamAppProvider.getAppInfo(app.appid, function(appInfo){
+					app.appInfo = appInfo;
+				});
 			};
 
 			$scope.removeApp = function(index){
