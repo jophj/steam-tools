@@ -1,6 +1,11 @@
 (function () {
 	
-	var SteamAppProvider = function () {
+	
+
+	/* global angular */
+	var app = angular.module('reddit-steam-tools', ['ngMaterial']);
+
+	app.factory('SteamAppProvider',[function () {
 			
 		var HOST = 'localhost:3666';
 		var iSteamAppsApi = '/ISteamApps/GetAppList/v2/';
@@ -93,5 +98,17 @@
 				return appDB == null;
 			}
 		};
-	};
+	}]);
+
+	app.controller('appCtrl',[
+		'$scope', 'SteamAppProvider',
+		function($scope, SteamAppProvider){
+			SteamAppProvider.initDB();
+			$scope.$watch('searchString', function(newValue){
+				if(newValue && newValue.length > 0)
+				$scope.apps = SteamAppProvider.search(newValue);
+			});
+		}
+	]);
+
 })();
