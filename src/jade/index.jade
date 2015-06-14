@@ -19,10 +19,10 @@ html(ng-app="reddit-steam-tools")
     div(role="main", layout="row")
       md-content.container(layout="row" layout-align="center start", layout-padding)
         div(flex="66")
-          div
+          form(ng-submit="onSearchApp()")
             md-input-container
               label Search
-              input(ng-model="searchString")
+              input(ng-model="searchString", ng-enter="")
 
           div
             span(ng-repeat="app in apps") {{app.name}}

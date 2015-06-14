@@ -20,12 +20,12 @@
     <div role="main" layout="row">
       <md-content layout="row" layout-align="center start" layout-padding class="container">
         <div flex="66">
-          <div>
+          <form ng-submit="onSearchApp()">
             <md-input-container>
               <label>Search</label>
-              <input ng-model="searchString">
+              <input ng-model="searchString" ng-enter="">
             </md-input-container>
-          </div>
+          </form>
           <div><span ng-repeat="app in apps">{{app.name}}</span></div>
         </div>
       </md-content>

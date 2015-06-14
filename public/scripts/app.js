@@ -86,7 +86,8 @@
 				iSteamAppsRequest.send();
 			},
 			
-			search: function (regexp) {
+			search: function (searchString) { //TODO split words and add .+
+				var regexp = new RegExp(searchString, 'i');
 				var toReturn = [];
 				appDB.forEach(function(app) {
 					if(app.name.search(regexp) >= 0)
@@ -104,10 +105,11 @@
 		'$scope', 'SteamAppProvider',
 		function($scope, SteamAppProvider){
 			SteamAppProvider.initDB();
-			$scope.$watch('searchString', function(newValue){
-				if(newValue && newValue.length > 0)
-				$scope.apps = SteamAppProvider.search(newValue);
-			});
+
+			$scope.onSearchApp = function(){
+				$scope.apps = SteamAppProvider.search($scope.searchString);
+				console.log($scope.apps);
+			};
 		}
 	]);
 
