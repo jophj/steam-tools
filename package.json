@@ -1,0 +1,23 @@
+{
+  "name": "reddit-steam-tools",
+  "version": "0.0.1",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp-jade": "^1.0.1",
+    "gulp": "^3.9.0"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.5.3",
+    "express": "^4.12.4",
+    "gulp": "^3.9.0",
+    "gulp-jade": "^1.0.1",
+    "gulp-util": "^3.0.5",
+    "tiny-lr": "^0.1.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
