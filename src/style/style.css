@@ -1,4 +1,12 @@
-
-html, body{
+html, body, body > div.row, body > div.row > div.main-container{
 	height: 100%;
+}
+
+#loading{
+	height: 100%;
+}
+#loading > h2{
+	position: relative;
+	top: 50%;
+	margin: auto;
 }

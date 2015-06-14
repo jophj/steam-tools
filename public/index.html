@@ -17,8 +17,10 @@
         <div class="col-md-2"></div>
         <div class="col-md-8 main-container">
           <h1>Reddit Steam Tools (Alpha as fuark)</h1>
-          <div class="input-group">
-            <input type="text" placeholder="Search" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+          <div id="search">
+            <div class="input-group">
+              <input id="searchString" type="text" placeholder="Search" class="form-control"><span onclick="onSearchApp()" class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            </div>
           </div>
           <div id="loading">
             <h2 class="text-center">Loading. Wait for it...</h2>

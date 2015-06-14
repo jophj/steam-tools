@@ -5,12 +5,16 @@
 		var HOST = 'localhost:3666';
 		var iSteamAppsApi = '/ISteamApps/GetAppList/v2/';
 		var appDB = null;
+		var isLoading = true;
+		
 		return{
 			initDB: function (callback) {
 				var iSteamAppsRequest = new XMLHttpRequest();
 				
 				iSteamAppsRequest.onload = function (evt) {
 					appDB = JSON.parse(iSteamAppsRequest.responseText).applist.apps;
+					isLoading = false;
+					
 					if(callback)
 					callback();
 				};
@@ -26,6 +30,9 @@
 						toReturn.push(app);
 				}, this);
 				return toReturn;				
+			},
+			isLoading: function () {
+				return isLoading;
 			}
 		};
 	};
@@ -36,14 +43,33 @@
 	
 	var dataprovider = SteamAppProvider();
 	dataprovider.initDB(function () {
-		var apps = dataprovider.search(/borderlands/i);
 		
-		// apps.forEach(function(app) {
-		// 	var div = document.createElement('div');
-		// 	div.innerHTML = template(app);
-		// 	document.body.appendChild(div);	
-		// }, this);		
-		
+		var loadingElement = document.getElementById('loading');
+		loadingElement.parentElement.removeChild(loadingElement);
 	});
+	
+	window.onload = function () {
+		document.getElementById('searchString').onkeyup = function (evt) {
+			if(evt.keyCode == 13)
+				window.onSearchApp();
+		};
+	};
+	
+	window.onSearchApp = function () {
+		if (dataprovider.isLoading()){
+			console.log('Wait for it...');
+		}
+		else{
+			var searchString = document.getElementById('searchString').value;
+			var regexp = new RegExp(searchString, 'i');
+			var apps = dataprovider.search(regexp);
+				
+			apps.forEach(function(app) {
+				var div = document.createElement('div');
+				div.innerHTML = template(app);
+				document.body.appendChild(div);	
+			}, this);		
+		}
+	};
 	
 })();
