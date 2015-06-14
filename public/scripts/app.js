@@ -94,43 +94,4 @@
 			}
 		};
 	};
-	
-	var source   = document.getElementById("entry-template").innerHTML;
-	var template = Handlebars.compile(source);
-	
-	var dataprovider = SteamAppProvider();
-	dataprovider.initDB(function () {
-		
-		var loadingElement = document.getElementById('loading');
-		loadingElement.parentElement.removeChild(loadingElement);
-	});
-	
-	window.onload = function () {
-		document.getElementById('searchString').onkeyup = function (evt) {
-			if(evt.keyCode == 13)
-				window.onSearchApp();
-		};
-	};
-	
-	window.addApp = function (app) {
-		console.log(app);
-	};
-	
-	
-	
-	window.onSearchApp = function () {
-		if (dataprovider.isLoading()){
-			console.log('Wait for it...');
-		}
-		else{
-			var searchString = document.getElementById('searchString').value;
-			var regexp = new RegExp(searchString, 'i');
-			var apps = dataprovider.search(regexp);
-			
-			var resultsElement = document.getElementById('results');
-			var resultListElement = template({"apps": apps});
-			resultsElement.innerHTML = resultListElement;	
-		}
-	};
-	
 })();
