@@ -30,14 +30,20 @@
             <div flex="50">
               <md-list>
                 <md-subheader>Results</md-subheader>
-                <md-list-item ng-repeat="app in apps" ng-click="addApp()">
+                <md-list-item ng-repeat="app in apps track by $index" ng-click="addApp($index)">
                   <p>{{app.name}}</p>
                   <md-button class="md-fab md-mini">+</md-button>
                 </md-list-item>
               </md-list>
             </div>
             <div flex="50">
-              <h4>Choosen</h4>
+              <md-list>
+                <md-subheader>Choosen</md-subheader>
+                <md-list-item ng-repeat="app in choosenApps track by $index" ng-click="removeApp($index)">
+                  <p>{{app.name}}</p>
+                  <md-button class="md-fab md-mini">-</md-button>
+                </md-list-item>
+              </md-list>
             </div>
           </div>
         </div>

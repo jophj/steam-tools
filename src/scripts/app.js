@@ -106,6 +106,18 @@
 		function($scope, SteamAppProvider){
 			SteamAppProvider.initDB();
 
+			$scope.choosenApps = [];
+
+			$scope.addApp = function(index){
+				$scope.choosenApps.push($scope.apps[index]);
+				$scope.apps.splice(index, 1);
+			};
+
+			$scope.removeApp = function(index){
+				$scope.apps.push($scope.choosenApps[index]);
+				$scope.choosenApps.splice(index, 1);
+			};
+
 			$scope.onSearchApp = function(){
 				$scope.apps = SteamAppProvider.search($scope.searchString);
 			};
