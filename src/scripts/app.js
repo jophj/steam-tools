@@ -8,6 +8,7 @@
 	app.factory('SteamAppProvider',['$http', function ($http) {
 			
 		var HOST = 'localhost:3666';
+		HOST = 'reddit-steam-tools-server.herokuapp.com/'
 		var iSteamAppsApi = '/ISteamApps/GetAppList/v2/';
 		var appDB = [
 					{
@@ -135,7 +136,10 @@
 			};
 
 			$scope.onSearchApp = function(){
-				$scope.apps = SteamAppProvider.search($scope.searchString);
+				if ($scope.searchString.length > 0)
+					$scope.apps = SteamAppProvider.search($scope.searchString);
+				else
+					$scope.apps = [];
 			};
 
 			$scope.generateText = function(){

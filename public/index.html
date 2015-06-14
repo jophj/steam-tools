@@ -50,10 +50,12 @@
             </div>
           </div>
           <div>
-            <md-button ng-click="generateText()" style="width: 100%" class="md-raised md-primary">Generate</md-button>
+            <md-button flex ng-click="generateText()" style="width: 100%" class="md-raised md-primary">Generate</md-button>
           </div>
           <div>
-            <textarea ng-model="redditTable"></textarea>
+            <md-input-container flex>
+              <textarea ng-model="redditTable"></textarea>
+            </md-input-container>
           </div>
         </div>
       </md-content>

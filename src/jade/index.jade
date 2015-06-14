@@ -43,9 +43,10 @@ html(ng-app="reddit-steam-tools")
                   md-button.md-fab.md-mini -
 
           div
-            md-button.md-raised.md-primary(ng-click="generateText()", style="width: 100%") Generate
+            md-button.md-raised.md-primary(flex, ng-click="generateText()", style="width: 100%") Generate
           div
-            textarea(ng-model="redditTable")
+            md-input-container(flex)
+              textarea(ng-model="redditTable")
             
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js')
