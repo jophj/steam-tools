@@ -108,7 +108,6 @@
 
 			$scope.onSearchApp = function(){
 				$scope.apps = SteamAppProvider.search($scope.searchString);
-				console.log($scope.apps);
 			};
 		}
 	]);

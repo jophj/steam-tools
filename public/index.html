@@ -23,10 +23,23 @@
           <form ng-submit="onSearchApp()">
             <md-input-container>
               <label>Search</label>
-              <input ng-model="searchString" ng-enter="">
+              <input ng-model="searchString">
             </md-input-container>
           </form>
-          <div><span ng-repeat="app in apps">{{app.name}}</span></div>
+          <div layout="row">
+            <div flex="50">
+              <md-list>
+                <md-subheader>Results</md-subheader>
+                <md-list-item ng-repeat="app in apps" ng-click="addApp()">
+                  <p>{{app.name}}</p>
+                  <md-button class="md-fab md-mini">+</md-button>
+                </md-list-item>
+              </md-list>
+            </div>
+            <div flex="50">
+              <h4>Choosen</h4>
+            </div>
+          </div>
         </div>
       </md-content>
     </div>
