@@ -17,12 +17,33 @@
 				
 				iSteamAppsRequest.open("GET", 'http://' + HOST + iSteamAppsApi);
 				iSteamAppsRequest.send();
+			},
+			
+			search: function (regexp) {
+				var toReturn = [];
+				appDB.forEach(function(app) {
+					if(app.name.search(regexp) >= 0)
+						toReturn.push(app);
+				}, this);
+				return toReturn;				
 			}
 		};
 	};
 	
-	var dataprovider = SteamAppProvider();
-	dataprovider.initDB(null);
+	var source   = document.getElementById("entry-template").innerHTML;
+	var template = Handlebars.compile(source);
 	
+	
+	var dataprovider = SteamAppProvider();
+	dataprovider.initDB(function () {
+		var apps = dataprovider.search(/borderlands/i);
+		
+		apps.forEach(function(app) {
+			var div = document.createElement('div');
+			div.innerHTML = template(app);
+			document.body.appendChild(div);	
+		}, this);		
+		
+	});
 	
 })();
