@@ -5,7 +5,7 @@ html
     title Reddit Steam Tools
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel="stylesheet", href="style.css")
+    link(rel="stylesheet", href="style/style.css")
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
     #script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
     script(src='scripts/handlebars-v3.0.3.js')
@@ -15,4 +15,19 @@ html
         span {{name}}
   
     body
+      div.row
+        div.col-md-2
+        div.col-md-8.main-container
+          h1 Reddit Steam Tools (Alpha as fuark)
+          
+          div.input-group
+            input.form-control(type="text", placeholder="Search")
+            span.input-group-addon
+              i.glyphicon.glyphicon-search
+              
+          div#loading
+            h2.text-center Loading. Wait for it...
+              
+        div.col-md-2
+      
       script(src='scripts/app.js')

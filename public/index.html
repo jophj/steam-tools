@@ -5,7 +5,7 @@
     <title>Reddit Steam Tools</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <div id="script" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></div>
     <script src="scripts/handlebars-v3.0.3.js"></script>
@@ -13,6 +13,19 @@
       <div><span>{{name}}</span></div>
     </script>
     <body>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 main-container">
+          <h1>Reddit Steam Tools (Alpha as fuark)</h1>
+          <div class="input-group">
+            <input type="text" placeholder="Search" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+          </div>
+          <div id="loading">
+            <h2 class="text-center">Loading. Wait for it...</h2>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
       <script src="scripts/app.js"></script>
     </body>
   </head>

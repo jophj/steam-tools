@@ -38,11 +38,11 @@
 	dataprovider.initDB(function () {
 		var apps = dataprovider.search(/borderlands/i);
 		
-		apps.forEach(function(app) {
-			var div = document.createElement('div');
-			div.innerHTML = template(app);
-			document.body.appendChild(div);	
-		}, this);		
+		// apps.forEach(function(app) {
+		// 	var div = document.createElement('div');
+		// 	div.innerHTML = template(app);
+		// 	document.body.appendChild(div);	
+		// }, this);		
 		
 	});
 	

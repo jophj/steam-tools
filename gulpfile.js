@@ -49,7 +49,7 @@ gulp.task('serve', function () {
   lr.listen(35729);
 });
 
-gulp.task("default", ["jade", "js", "watch", "serve"]);
+gulp.task("default", ["jade", "js", "css","watch", "serve"]);
 
 refresh = function(event) {
   var fileName = require('path').relative(__dirname, event.path);
