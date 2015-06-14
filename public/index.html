@@ -50,7 +50,10 @@
             </div>
           </div>
           <div>
-            <md-button style="width: 100%" class="md-raised md-primary">Generate</md-button>
+            <md-button ng-click="generateText()" style="width: 100%" class="md-raised md-primary">Generate</md-button>
+          </div>
+          <div>
+            <textarea ng-model="redditTable"></textarea>
           </div>
         </div>
       </md-content>

@@ -137,6 +137,16 @@
 			$scope.onSearchApp = function(){
 				$scope.apps = SteamAppProvider.search($scope.searchString);
 			};
+
+			$scope.generateText = function(){
+				var redditTable = "|Title|Disc.|$USD|$CAD|€EUR|£GBP|AU ($USD)|BRL$|Metascore|Platform|Cards|PCGW|\n";
+				redditTable += "|:-|-:|-:|-:|-:|-:|-:|-:|-:|:-:|:-:|:-:|";
+				var appInfo = $scope.choosenApps[0].appInfo;
+				redditTable += "|[" + appInfo.name + "](www.google.com)|";
+				redditTable += appInfo.prices['discount_percent'] + "|"+appInfo.prices['us'];
+
+				$scope.redditTable = redditTable;
+			};
 		}
 	]);
 
