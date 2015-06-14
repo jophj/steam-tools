@@ -5,9 +5,9 @@ jade = require('gulp-jade');
 gutil = require('gulp-util');
 
 var sources = {
-  jade: "jade/**/*.jade",
-  js: "scripts/**/*.js",
-  css: "style/**/*.css",
+  jade: "src/jade/**/*.jade",
+  js: "src/scripts/**/*.js",
+  css: "src/style/**/*.css",
 };
 
 var destinations = {
