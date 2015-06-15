@@ -124,12 +124,14 @@
 	app.controller('appCtrl',[
 		'$scope', 'SteamAppProvider',
 		function($scope, SteamAppProvider){
-			SteamAppProvider.initDB(function(){
-				$scope.isLoading = false;
-			});
 
 			$scope.isLoading = true;
 			$scope.choosenApps = [];
+
+			SteamAppProvider.initDB(function(){
+				$scope.isLoading = false;
+				$scope.$digest();
+			});
 
 			$scope.addApp = function(index){
 				var app = $scope.apps[index];
@@ -175,7 +177,7 @@
 					urlToken(appInfo.name, appInfo.appUrl);
 					
 					stringToken(appInfo.prices['us']['discount_percent']);
-					
+
 					stringToken(appInfo.prices['us']['final']/100);
 					stringToken(appInfo.prices['ca']['final']/100);
 					stringToken(appInfo.prices['eur']['final']/100);
