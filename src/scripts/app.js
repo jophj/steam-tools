@@ -8,7 +8,7 @@
 	app.factory('SteamAppProvider',['$http', function ($http) {
 			
 		var HOST = 'localhost:3666';
-		HOST = 'reddit-steam-tools-server.herokuapp.com'
+		//HOST = 'reddit-steam-tools-server.herokuapp.com';
 		var iSteamAppsApi = '/ISteamApps/GetAppList/v2/';
 		var appDB = [
 					{
@@ -143,12 +143,55 @@
 			};
 
 			$scope.generateText = function(){
+
+				var stringToken = function(string){
+					redditTable += "|"+string;
+				};
+				var urlToken = function(name, url){
+					redditTable += "|[" + name + "](" + url + ")";
+				};
+				var platformToken = function(platforms){
+					redditTable += "|";
+					redditTable += platforms.windows ? 'W' : '';
+					redditTable += platforms.mac ? 'M' : '';
+					redditTable += platforms.linux ? 'L' : '';
+				};
+
 				var redditTable = "|Title|Disc.|$USD|$CAD|€EUR|£GBP|AU ($USD)|BRL$|Metascore|Platform|Cards|PCGW|\n";
-				redditTable += "|:-|-:|-:|-:|-:|-:|-:|-:|-:|:-:|:-:|:-:|";
+				redditTable += "|:-|-:|-:|-:|-:|-:|-:|-:|-:|:-:|:-:|:-:|\n";
 				var appInfo = $scope.choosenApps[0].appInfo;
-				redditTable += "|[" + appInfo.name + "](www.google.com)|";
-				redditTable += appInfo.prices['discount_percent'] + "|"+appInfo.prices['us'];
-				redditTable += 'porcaddio ho sonno';
+				urlToken(appInfo.name, appInfo.appUrl);
+				
+				stringToken(appInfo.prices['us']['discount_percent']);
+				stringToken(appInfo.prices['us']['final']/100);
+				stringToken(appInfo.prices['ca']['final']/100);
+				stringToken(appInfo.prices['eur']['final']/100);
+				stringToken(appInfo.prices['uk']['final']/100);
+				stringToken(appInfo.prices['au']['final']/100);
+				stringToken(appInfo.prices['br']['final']/100);
+
+				// stringToken(appInfo.prices['ru']['discount_percent']);
+				// stringToken(appInfo.prices['ru']['final']/100);
+
+				if (appInfo.metacritic){
+					urlToken(appInfo.metacritic.score, appInfo.metacritic.url);
+				}
+				else{
+					stringToken('N/A');
+				}
+
+				platformToken(appInfo.platforms);
+
+				stringToken(appInfo.cards ? 'Yes' : 'No');
+
+				if (appInfo.pcgwUrl){
+					urlToken('YES', appInfo.pcgwUrl);
+				}
+				else{
+					stringToken('No');
+				}
+
+				stringToken('\n');
 
 				$scope.redditTable = redditTable;
 			};
