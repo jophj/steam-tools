@@ -8,7 +8,7 @@
 	app.factory('SteamAppProvider',['$http', function ($http) {
 			
 		var HOST = 'localhost:3666';
-		//HOST = 'reddit-steam-tools-server.herokuapp.com';
+		HOST = 'reddit-steam-tools-server.herokuapp.com';
 		var iSteamAppsApi = '/ISteamApps/GetAppList/v2/';
 		var appDB = [
 					{
@@ -74,17 +74,24 @@
 					
 		return{
 			initDB: function (callback) {
-				var iSteamAppsRequest = new XMLHttpRequest();
-				
-				iSteamAppsRequest.onload = function (evt) {
-					appDB = JSON.parse(iSteamAppsRequest.responseText).applist.apps;
-					
-					if(callback)
+				$http.get('http://' + HOST + iSteamAppsApi).then(
+					function(resp){
+						appDB = resp.data.applist.apps;
 						callback();
-				};
+					}
+				);
+
+				// var iSteamAppsRequest = new XMLHttpRequest();
 				
-				iSteamAppsRequest.open("GET", 'http://' + HOST + iSteamAppsApi);
-				iSteamAppsRequest.send();
+				// iSteamAppsRequest.onload = function (evt) {
+				// 	appDB = JSON.parse(iSteamAppsRequest.responseText).applist.apps;
+					
+				// 	if(callback)
+				// 		callback();
+				// };
+				
+				// iSteamAppsRequest.open("GET", 'http://' + HOST + iSteamAppsApi);
+				// iSteamAppsRequest.send();
 			},
 			
 			search: function (searchString) { //TODO split words and add .+
@@ -130,9 +137,11 @@
 
 			SteamAppProvider.initDB(function(){
 				$scope.isLoading = false;
-				$scope.$digest();
 			});
 
+			$scope.clearResults = function(){
+				$scope.apps = [];
+			};
 			$scope.addApp = function(index){
 				var app = $scope.apps[index];
 				$scope.choosenApps.push(app);

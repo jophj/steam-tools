@@ -18,11 +18,13 @@ html(ng-app="reddit-steam-tools")
     
     div(role="main", layout="row")
       md-content.container(layout="row" layout-align="center start", layout-padding)
-        div(flex="66")
+        div(flex="80")
           form(ng-submit="onSearchApp()")
             md-input-container
               label Search
               input(ng-model="searchString")
+            md-button.md-raised.md-warn(flex, ng-click="clearResults()", style="width: 100%") Clear
+
 
           div(ng-if="isLoading")
             p.md-display-1(style="text-align: center;") Loading. Wait for it...
